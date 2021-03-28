@@ -10,7 +10,7 @@ const Weather = () => {
 
     const Search = event =>{
         if(event.key === 'Enter'){
-            fetch(`${API.base}weather?q=${query}&units=metric&APPID=${API.key}`)
+            fetch(`${API.base}data/2.5/weather?q=${query}&units=metric&APPID=${API.key}`)
                 .then(res => res.json())
                 .then (result => 
                     setWeather(result),
@@ -64,7 +64,7 @@ const Weather = () => {
                                     <div className="feels">Feels like: {Math.round(weather.main.feels_like)}&#176;C</div>
                                     <div className="weather">
                                     <div>{weather.weather[0].main}</div>
-                                    {weather.weather[0].main === 'Sunny'? <FontAwesomeIcon icon={faSun} spin/> : <FontAwesomeIcon icon={faCloud} />}
+                                    <img src={`${API.baseIcon}wn/${weather.weather[0].icon}@2x.png`} alt="icon"></img>
                                     <div className="wind">Wind: {weather.wind.speed}km/h  {weather.wind.speed > 0 ? <FontAwesomeIcon icon={faWind} />: ('')}</div>
                                 </div>
                                 </div>
